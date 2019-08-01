@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VolcanoService {
@@ -46,17 +44,6 @@ public class VolcanoService {
         return (List<Volcano>) repository.findAll();
     }
 
-    public Optional<Volcano> getVolcanoById(String volcanoId) {
-        if (StringUtils.isEmpty(volcanoId)) {
-            throw new NullPointerException("volcanoId cannot be empty or null");
-        }
-        Optional<Volcano> volcano = repository.findById(volcanoId);
-        if (volcanoId.isEmpty()) {
-            return Optional.empty();
-        } else {
-            return volcano;
-        }
-    }
 }
 
 
