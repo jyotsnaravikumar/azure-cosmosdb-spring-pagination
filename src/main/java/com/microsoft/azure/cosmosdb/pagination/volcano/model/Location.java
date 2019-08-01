@@ -1,28 +1,18 @@
 package com.microsoft.azure.cosmosdb.pagination.volcano.model;
 
+import lombok.*;
+
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Data
 public class Location {
 
     private String type;
 
     private List<Double> coordinates = null;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public List<Double> getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(List<Double> coordinates) {
-        this.coordinates = coordinates;
-    }
-
 
 }

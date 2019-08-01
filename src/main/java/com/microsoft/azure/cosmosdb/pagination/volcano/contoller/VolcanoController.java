@@ -13,9 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-
 
 @RequestMapping(path = "/api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class VolcanoController {
@@ -43,6 +43,22 @@ public class VolcanoController {
         List<Volcano> list = volcanoService.getAllVolcanoesByPage(pageNo, pageSize, sortBy);
 
         return new ResponseEntity<List<Volcano>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value="/volcanoes/{id}", method=RequestMethod.GET)
+    @ApiOperation(value = "Get all volcanoes by page", notes = "Retrieve all volcanoes by page")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "List of volcano objects by page") })
+    public ResponseEntity<Volcano> getAllVocanoesById(
+            @PathVariable("id") final String volcanoId)
+    {
+        Optional<Volcano> volcano = volcanoService.getVolcanoById(volcanoId);
+        if (volcano.isPresent()) {
+            return new ResponseEntity<>(volcano.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
 

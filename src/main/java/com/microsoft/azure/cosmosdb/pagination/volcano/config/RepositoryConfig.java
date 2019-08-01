@@ -4,6 +4,7 @@ import com.microsoft.azure.spring.data.cosmosdb.config.AbstractDocumentDbConfigu
 import com.microsoft.azure.spring.data.cosmosdb.config.DocumentDBConfig;
 import com.microsoft.azure.spring.data.cosmosdb.repository.config.EnableDocumentDbRepositories;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableDocumentDbRepositories(basePackages = "com.microsoft.azure.cosmosdb.pagination.*")
+@EnableConfigurationProperties
+
 public class RepositoryConfig extends AbstractDocumentDbConfiguration {
 
     @Value("${azure.cosmosdb.uri}")
